@@ -1,4 +1,4 @@
---- Create the tables ((modified) tables taken from https://www.torsten-horn.de/techdocs/sql-commands.sql.htm - all credits go there)
+-- Create the tables ((modified) tables taken from https://www.torsten-horn.de/techdocs/sql-commands.sql.htm - all credits go there)
 
 CREATE DATABASE Mensa_test;
 USE Mensa_test;
@@ -71,8 +71,8 @@ VALUES  (3 , 5 ),
         (3 , 1 ),
 		(2 , 3 );
 
---------------------------------------------------------------------------------
---- Print a few interesting things
+-- ------------------------------------------------------------------------------
+-- Print a few interesting things
 SELECT * FROM Customers;
 SELECT dish,prize AS Euro FROM Dishes;
 SELECT id_customer, MAX(id_dish) AS 'maximum dish id order' FROM Orders GROUP BY id_customer;
@@ -84,7 +84,7 @@ SELECT dish, ingredients,
 	end as 'dish type'
 	From Dishes;
 
---- A bit of relational analysis
+-- A bit of relational analysis
 SELECT first_name, department,
 	IFNULL(Count(id_order),0) AS 'Visits', 
 		CASE 
@@ -96,7 +96,7 @@ SELECT first_name, department,
     LEFT JOIN Orders ON Customers.id_customer=Orders.id_customer 
     GROUP BY Customers.id_customer;
     
---- Average spent euros per department
+-- Average spent euros per department
 SELECT department, 
 	IFNULL(SUM(prize),0) AS 'Euros spent'
     FROM Customers
@@ -105,5 +105,5 @@ SELECT department,
     GROUP BY Customers.department;
 
 
---- clear database again
+-- clear database again
 DROP DATABASE Mensa_test;
